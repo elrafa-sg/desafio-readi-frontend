@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MdLogout } from 'react-icons/md'
 import Stack from '@mui/material/Stack'
@@ -9,6 +9,7 @@ import Button from "@mui/material/Button"
 
 import { LocalStorage } from '@/utils/LocalStorage'
 import { TableSolicitacoes } from '@/components/TableSolicitacoes'
+import { SolicitacaoService } from '@/services/SolicitacaoService'
 
 
 export default function Home () {
@@ -20,6 +21,17 @@ export default function Home () {
     LocalStorage.clearUserData()
     router.push('/')
   }
+
+  const carregarSolicitacoes = useCallback(async () => {
+    const solicitacoesResponse = await SolicitacaoService.getAll()
+    if (solicitacoesResponse.status == 200) {
+      setSolicitacoes(solicitacoesResponse.data)
+    }
+  }, [])
+
+  useEffect(() => {
+    carregarSolicitacoes()
+  }, [carregarSolicitacoes])
 
   return (
     <>
