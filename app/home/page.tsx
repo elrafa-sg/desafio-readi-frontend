@@ -22,7 +22,7 @@ export default function Home () {
   const [showModalSolicitacao, setShowModalSolicitacao] = useState(false)
   const [solicitacoes, setSolicitacoes] = useState([])
 
-  const [showFeedback, setShowFeedback] = useState<{ open: boolean, text: string, type: 'success' | 'error' }>({ open: false, text: '', type: '' })
+  const [showFeedback, setShowFeedback] = useState<{ open: boolean, text: string, type: 'success' | 'error' }>({ open: false, text: '', type: 'success' })
 
   function logoff () {
     LocalStorage.clearUserData()
