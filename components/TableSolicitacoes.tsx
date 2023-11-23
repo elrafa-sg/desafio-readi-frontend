@@ -9,7 +9,8 @@ import Alert from '@mui/material/Alert'
 import { SolicitacaoService } from '@/services/SolicitacaoService'
 
 interface SolicitacoesProps {
-    solicitacoes: any[]
+    solicitacoes: any[],
+    reloadFunction: Function
 }
 
 const TableSolicitacoes = (props: SolicitacoesProps) => {
@@ -18,6 +19,7 @@ const TableSolicitacoes = (props: SolicitacoesProps) => {
 
     async function deleteSolicitacao (solicitacaoId: string) {
         const solicitacaoResponse = await SolicitacaoService.delete(solicitacaoId)
+        props.reloadFunction()
         setShowFeedbackAlert(true)
         setFeedbackMessage(solicitacaoResponse.data.message)
 

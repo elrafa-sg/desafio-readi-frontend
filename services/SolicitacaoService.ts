@@ -20,6 +20,15 @@ class SolicitacaoService {
             return apiErrorResponse.response
         }
     }
+
+    static async create (solicitacaoData: any) {
+        try {   
+            const apiResponse = await apiClient.post(`${BASE_PATH}`, solicitacaoData)
+            return apiResponse
+        } catch (apiErrorResponse: any) {
+            return apiErrorResponse.response
+        }
+    }
 }
 
 export { SolicitacaoService }
